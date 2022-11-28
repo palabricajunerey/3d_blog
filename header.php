@@ -1,4 +1,6 @@
 <?php 
+session_start();
+
 if(!defined('ENABLE_PAGE')){
     header("location: index.php");
 }
@@ -62,6 +64,10 @@ include 'config.php';
                     </li>
                     <li class="nav-item">
                         <?php 
+                            if(isset($_SESSION['logged_in'])){
+                                echo '<a class="nav-link" href="logout.php">Logout</a>';
+                            }else{ ?>
+                                <?php 
                         if(isset($login)){
                             echo '<a class="nav-link active" href="login.php"><b>Login</b></a>';
                         }else{
@@ -77,6 +83,7 @@ include 'config.php';
                             echo '<a class="nav-link" href="signup.php">Signup</a>';
                         }
                         ?>
+                        <?php  } ?>
                     </li>
                 </ul>
             </div>
